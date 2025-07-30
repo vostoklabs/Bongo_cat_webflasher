@@ -53,7 +53,8 @@ bongo-cat-website/
 │   ├── tray screenshot.png  # Desktop app tray
 │   └── settings.png         # Settings screenshot
 └── BongoCat_Release/
-    └── BongoCat_Setup.exe   # Windows installer
+    ├── BongoCat_Setup.exe   # Windows installer
+    └── BongoCat_Installer.zip # ZIP package with installer
 ```
 
 ## 🌐 Hosting
