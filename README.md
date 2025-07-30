@@ -4,7 +4,7 @@ A web-based installer for the Bongo Cat ESP32 project - a cute digital pet that 
 
 ## 🌐 Live Demo
 
-Visit the web installer at: [Your GitHub Pages URL]
+Visit the web installer at: https://vostoklabs.github.io/Bongo_cat_webflasher/
 
 ## 📁 Repository Contents
 
@@ -82,6 +82,3 @@ To run locally:
 
 This project is open source and costs around $10 to build with no soldering required.
 
----
-
-**Made with ❤️ for the maker community** 
