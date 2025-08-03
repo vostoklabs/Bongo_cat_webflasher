@@ -417,7 +417,7 @@
             </div>
 
             <p class="description">
-                Bongo Cat is a cute digital pet that will type with you. It can show CPU, RAM, and your typing speed in words per minute as well as time. Bongo cat will type faster if you type faster, featuring adorable animations and expressions that bring joy to your desk. It's open source, costs around $10 to build, and flashes in seconds with no soldering required.
+                Bongo Cat is a cute digital pet that will type with you. It can show CPU, RAM, and your typing speed in words per minute as well as time. Bongo cat will type faster if you type faster, featuring adorable animations and expressions that bring joy to your desk. Now available as a cross-platform desktop app for both Windows and Mac! The hardware is open source, costs around $10 to build, and flashes in seconds with no soldering required.
             </p>
         </div>
 
@@ -445,27 +445,58 @@
         </div>
 
         <div class="pc-app-section">
-            <h2>PC Application Download</h2>
+            <h2>Desktop Application Download</h2>
             
             <p class="app-description">
                 After flashing your ESP32, you'll need the Bongo Cat desktop application to enable the interactive features. 
-                The desktop app communicates with your ESP32 to send typing data, system stats, and control animations.
+                The new cross-platform Electron app communicates with your ESP32 to send typing data, system stats, and control animations.
+                Now available for both Windows and Mac!
             </p>
 
-            <div class="download-container">
-                <a href="BongoCat_Release/BongoCat_Installer.zip" class="download-button" download>
-                    📦 Download Bongo Cat Installer ZIP (Windows)
-                </a>
-                <p class="download-note">Compatible with Windows 10/11</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>🪟 Windows Application</h4>
+                    <p>Legacy Windows installer with full functionality</p>
+                    <div class="download-container">
+                        <a href="BongoCat_Release/BongoCat_Installer.zip" class="download-button" download>
+                            📦 Download Windows Installer ZIP
+                        </a>
+                        <p class="download-note">Compatible with Windows 10/11</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>🍎 Mac Application (New!)</h4>
+                    <p>Cross-platform Electron app with the same great features</p>
+                    <div class="download-container">
+                        <a href="https://github.com/vostoklabs/bongo_cat_monitor/releases/latest" class="download-button" target="_blank">
+                            📱 Download Mac App
+                        </a>
+                        <p class="download-note">Compatible with macOS 10.14+</p>
+                    </div>
+                </div>
             </div>
 
             <div class="setup-steps">
                 <h3>Setup Steps After Flashing:</h3>
+                
+                <h4>Windows Setup:</h4>
                 <ol class="setup-list">
                     <li>Download the <strong>BongoCat_Installer.zip</strong> file and extract it</li>
                     <li>Run the <strong>BongoCat_Setup.exe</strong> installer from the extracted files</li>
                     <li>The app will automatically find your ESP32 board and connect</li>
                     <li>The app runs from the system tray - look for the Bongo Cat icon</li>
+                    <li>Start typing and watch your Bongo Cat come to life! 🎉</li>
+                </ol>
+                
+                <h4>Mac Setup:</h4>
+                <ol class="setup-list">
+                    <li>Download the latest <strong>Bongo Cat Monitor</strong> app from the GitHub releases</li>
+                    <li>Open the downloaded <strong>.dmg</strong> file and drag the app to your Applications folder</li>
+                    <li>Launch the app from Applications (you may need to allow it in Security & Privacy settings)</li>
+                    <li>Connect your ESP32 to your Mac via USB cable</li>
+                    <li>In the app, select the correct USB port to connect to your ESP32</li>
+                    <li>Once connected, the app will communicate with your ESP32 via USB</li>
                     <li>Start typing and watch your Bongo Cat come to life! 🎉</li>
                 </ol>
             </div>
@@ -474,15 +505,26 @@
                 <h3>How to Use:</h3>
                 <div class="instruction-grid">
                     <div class="instruction-item">
-                        <h4>🖱️ Tray Access</h4>
-                        <p>The app runs from your system tray. Click the Bongo Cat icon to access options.</p>
+                        <h4>🖱️ System Access</h4>
+                        <p><strong>Windows:</strong> The app runs from your system tray. Click the Bongo Cat icon to access options.<br>
+                        <strong>Mac:</strong> The app appears in your menu bar. Click the icon to access settings and controls.</p>
                         <img src="web resources/tray screenshot.png" alt="System tray screenshot" class="instruction-image">
                     </div>
                     
                     <div class="instruction-item">
                         <h4>⚙️ Settings</h4>
-                        <p>Right-click the tray icon to configure what information is shown and set sleep time.</p>
+                        <p>Right-click (Windows) or click (Mac) the icon to configure what information is shown and set sleep time.</p>
                         <img src="web resources/settings.png" alt="Settings screenshot" class="instruction-image">
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <h4>🍎 Mac Troubleshooting</h4>
+                        <p>If the app won't open, go to System Preferences → Security & Privacy → General and click "Open Anyway" next to the blocked app warning.</p>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <h4>🔗 USB Connection</h4>
+                        <p>Select the correct USB port in the app to connect to your ESP32. Make sure your ESP32 is connected to your computer via USB cable.</p>
                     </div>
                 </div>
             </div>
@@ -495,6 +537,8 @@
                     <li><strong>⏰ Time Display:</strong> Shows current time on your ESP32 display</li>
                     <li><strong>🎨 Multiple Animations:</strong> Various cat expressions and speed-responsive animations</li>
                     <li><strong>💤 Sleep Mode:</strong> Cat goes to sleep when idle with customizable sleep timer</li>
+                    <li><strong>🌐 Cross-Platform:</strong> Works seamlessly on both Windows and Mac with the same features</li>
+                    <li><strong>📡 USB Communication:</strong> Connects to your ESP32 via USB for reliable data transfer</li>
                 </ul>
             </div>
 

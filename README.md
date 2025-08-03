@@ -18,7 +18,8 @@ Visit the web installer at: https://vostoklabs.github.io/Bongo_cat_webflasher/
 
 - **One-click ESP32 flashing** using ESP Web Tools
 - **No Arduino IDE required** - flash directly from browser
-- **Desktop app download** with setup instructions
+- **Cross-platform desktop app** for Windows and Mac
+- **Electron-based app** with modern interface
 - **Responsive design** works on all devices
 - **Professional installer interface**
 
@@ -33,8 +34,8 @@ Bongo Cat is a cute digital pet that will type with you. It can show:
 ## 🛠️ How It Works
 
 1. **Flash ESP32**: Use the web installer to flash firmware
-2. **Download Desktop App**: Install the Windows application
-3. **Connect**: App automatically finds and connects to ESP32
+2. **Download Desktop App**: Install the cross-platform application (Windows or Mac)
+3. **Connect**: App automatically finds and connects to ESP32 over network
 4. **Type**: Watch your Bongo Cat respond to your typing!
 
 ## 📦 File Structure
@@ -76,7 +77,7 @@ To run locally:
 
 - **Browser**: Chrome, Edge, or Opera (for Web Serial support)
 - **ESP32**: Board with 2.4" TFT display
-- **OS**: Windows 10/11 (for desktop app)
+- **OS**: Windows 10/11 or macOS 10.14+ (for desktop app)
 
 ## 🎯 Open Source
 
