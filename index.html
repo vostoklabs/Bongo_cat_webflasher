@@ -424,24 +424,67 @@
         <div class="installation-section">
             <h2>Software Installation Instructions</h2>
             
-            <ol class="installation-steps">
-                <li>Connect your ESP32 board with 2.4 inch TFT display to your computer's USB port.</li>
-                <li>Click the 'Connect' button below. <strong>This will only work in Google Chrome or Microsoft Edge.</strong></li>
-                <li>When prompted to choose a port, choose "USB Serial".</li>
-                <li>Click 'Install Bongo Cat'.</li>
-            </ol>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px; color: #e74c3c; font-weight: 600;">
+                ⚠️ Choose the correct board size below - 2.4 inch or 2.8 inch display
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin: 30px 0;">
+                <!-- 2.4 inch Board Section -->
+                <div style="background: #f8f9fa; border-radius: 12px; padding: 30px; border: 2px solid #3498db;">
+                    <h3 style="color: #3498db; margin-bottom: 20px; text-align: center; font-size: 1.4rem;">2.4 Inch Display Board</h3>
+                    
+                    <ol class="installation-steps">
+                        <li>Connect your ESP32 board with <strong>2.4 inch TFT display</strong> to your computer's USB port.</li>
+                        <li>Click the 'Connect' button below. <strong>This will only work in Google Chrome or Microsoft Edge.</strong></li>
+                        <li>When prompted to choose a port, choose "USB Serial".</li>
+                        <li>Click 'Install Bongo Cat'.</li>
+                    </ol>
 
-            <div class="install-button-container">
-                <esp-web-install-button 
-                    id="install-button"
-                    manifest="./manifest.json">
-                    <button slot="activate">Connect</button>
-                    <span slot="unsupported">Your browser doesn't support Web Serial. Please use Chrome, Edge, or Opera.</span>
-                    <span slot="not-allowed">HTTPS required for Web Serial. Please use a web server.</span>
-                </esp-web-install-button>
+                    <div class="install-button-container">
+                        <esp-web-install-button 
+                            id="install-button-24"
+                            manifest="./manifest.json">
+                            <button slot="activate">Connect 2.4" Board</button>
+                            <span slot="unsupported">Your browser doesn't support Web Serial. Please use Chrome, Edge, or Opera.</span>
+                            <span slot="not-allowed">HTTPS required for Web Serial. Please use a web server.</span>
+                        </esp-web-install-button>
+                    </div>
+                    
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: #666;">
+                        Most common board type
+                    </p>
+                </div>
+                
+                <!-- 2.8 inch Board Section -->
+                <div style="background: #f8f9fa; border-radius: 12px; padding: 30px; border: 2px solid #e67e22;">
+                    <h3 style="color: #e67e22; margin-bottom: 20px; text-align: center; font-size: 1.4rem;">2.8 Inch Display Board</h3>
+                    
+                    <ol class="installation-steps">
+                        <li>Connect your ESP32 board with <strong>2.8 inch TFT display</strong> to your computer's USB port.</li>
+                        <li>Click the 'Connect' button below. <strong>This will only work in Google Chrome or Microsoft Edge.</strong></li>
+                        <li>When prompted to choose a port, choose "USB Serial".</li>
+                        <li>Click 'Install Bongo Cat'.</li>
+                    </ol>
+
+                    <div class="install-button-container">
+                        <esp-web-install-button 
+                            id="install-button-28"
+                            manifest="./manifest-2.8inch.json">
+                            <button slot="activate">Connect 2.8" Board</button>
+                            <span slot="unsupported">Your browser doesn't support Web Serial. Please use Chrome, Edge, or Opera.</span>
+                            <span slot="not-allowed">HTTPS required for Web Serial. Please use a web server.</span>
+                        </esp-web-install-button>
+                    </div>
+                    
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: #666;">
+                        Newer, larger display version
+                    </p>
+                </div>
             </div>
 
-            <p class="browser-note">This will only work in Google Chrome or Microsoft Edge.</p>
+            <p class="browser-note">Both installations only work in Google Chrome or Microsoft Edge.</p>
+            
+
         </div>
 
         <div class="pc-app-section">
@@ -566,7 +609,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const installButton = document.querySelector('#install-button');
+            // Get both install buttons
+            const installButton24 = document.querySelector('#install-button-24');
+            const installButton28 = document.querySelector('#install-button-28');
             
             // ESP32 USB vendor IDs for filtering
             const esp32VendorIds = [0x10C4, 0x1A86, 0x303A, 0x0403, 0x2341, 0x239A, 0x1B4F];
@@ -574,48 +619,57 @@
             // Create ESP32-only port filters
             const esp32Filters = esp32VendorIds.map(id => ({ usbVendorId: id }));
             
-            // Set the port filters on the ESP Web Tools button
-            installButton.setAttribute('port-filters', JSON.stringify(esp32Filters));
-            
-            // Add visual feedback for the installation process
-            installButton.addEventListener('state-changed', function(e) {
-                const button = installButton.querySelector('button[slot="activate"]');
+            // Function to setup install button
+            function setupInstallButton(button, boardSize, originalText) {
                 if (!button) return;
                 
-                switch(e.detail.state) {
-                    case 'initializing':
-                        button.textContent = 'Detecting ESP32...';
-                        break;
-                    case 'preparing':
-                        button.textContent = 'Preparing to Install';
-                        break;
-                    case 'manifest':
-                        button.textContent = 'Loading Firmware...';
-                        break;
-                    case 'erasing':
-                        button.textContent = 'Erasing Flash...';
-                        break;
-                    case 'writing':
-                        button.textContent = 'Installing Bongo Cat';
-                        break;
-                    case 'finished':
-                        button.textContent = 'Installation Complete!';
-                        setTimeout(() => {
-                            button.textContent = 'Connect';
-                        }, 3000);
-                        break;
-                    case 'error':
-                        button.textContent = 'Installation Failed';
-                        setTimeout(() => {
-                            button.textContent = 'Connect';
-                        }, 3000);
-                        break;
-                    default:
-                        button.textContent = 'Connect';
-                }
-            });
+                // Set the port filters on the ESP Web Tools button
+                button.setAttribute('port-filters', JSON.stringify(esp32Filters));
+                
+                // Add visual feedback for the installation process
+                button.addEventListener('state-changed', function(e) {
+                    const activateButton = button.querySelector('button[slot="activate"]');
+                    if (!activateButton) return;
+                    
+                    switch(e.detail.state) {
+                        case 'initializing':
+                            activateButton.textContent = 'Detecting ESP32...';
+                            break;
+                        case 'preparing':
+                            activateButton.textContent = 'Preparing to Install';
+                            break;
+                        case 'manifest':
+                            activateButton.textContent = 'Loading Firmware...';
+                            break;
+                        case 'erasing':
+                            activateButton.textContent = 'Erasing Flash...';
+                            break;
+                        case 'writing':
+                            activateButton.textContent = `Installing Bongo Cat ${boardSize}"`;
+                            break;
+                        case 'finished':
+                            activateButton.textContent = 'Installation Complete!';
+                            setTimeout(() => {
+                                activateButton.textContent = originalText;
+                            }, 3000);
+                            break;
+                        case 'error':
+                            activateButton.textContent = 'Installation Failed';
+                            setTimeout(() => {
+                                activateButton.textContent = originalText;
+                            }, 3000);
+                            break;
+                        default:
+                            activateButton.textContent = originalText;
+                    }
+                });
+            }
             
-            console.log('ESP Web Tools initialized with ESP32 filters');
+            // Setup both buttons
+            setupInstallButton(installButton24, '2.4', 'Connect 2.4" Board');
+            setupInstallButton(installButton28, '2.8', 'Connect 2.8" Board');
+            
+            console.log('ESP Web Tools initialized for both 2.4" and 2.8" boards with ESP32 filters');
         });
     </script>
 </body>
